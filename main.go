@@ -38,4 +38,8 @@ func handleConnection(src net.Conn) {
 			log.Fatalln(err)
 		}
 	}()
+
+	if _, err := io.Copy(src, destination); err != nil {
+		log.Fatalln(err)
+	}
 }
