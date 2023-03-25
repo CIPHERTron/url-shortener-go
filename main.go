@@ -18,5 +18,17 @@ func main() {
 		if err != nil {
 			log.Fatalln("Unable to accept connection")
 		}
+
+		go handleConnection(conn)
 	}
+}
+
+func handleConnection(src net.Conn) {
+	destination, err := net.Dial("tcp", "https://www.google.com:80")
+
+	if err != nil {
+		log.Fatalln("Unable to connect to target server")
+	}
+
+	defer destination.Close()
 }
