@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"net"
 )
@@ -31,4 +32,10 @@ func handleConnection(src net.Conn) {
 	}
 
 	defer destination.Close()
+
+	go func() {
+		if _, err := io.Copy(destination, src); err != nil {
+			log.Fatalln(err)
+		}
+	}()
 }
