@@ -25,7 +25,7 @@ func main() {
 }
 
 func handleConnection(src net.Conn) {
-	destination, err := net.Dial("tcp", "https://www.google.com:80")
+	destination, err := net.Dial("tcp", "https://www.google.com:443")
 
 	if err != nil {
 		log.Fatalln("Unable to connect to target server")
